@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace BTLcnpm.Areas.Admin.Controllers
 {
-    public class CookerController : Controller
+    public class CookerController : BaseAdminController
     {
         // GET: Admin/Cooker
         public ActionResult Index(long vendorId = 0)

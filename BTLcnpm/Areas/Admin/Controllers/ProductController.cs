@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace BTLcnpm.Areas.Admin.Controllers
 {
-    public class ProductController : Controller
+    public class ProductController : BaseAdminController
     {
         // GET: Admin/Product
         

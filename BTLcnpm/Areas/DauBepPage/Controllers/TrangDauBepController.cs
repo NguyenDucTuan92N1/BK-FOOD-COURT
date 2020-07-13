@@ -1,4 +1,5 @@
 ﻿using BTLcnpm.Areas.DauBepPage.Common;
+using BTLcnpm.Common;
 using Model.Dao;
 using Model.EF;
 using System;
@@ -145,6 +146,67 @@ namespace BTLcnpm.Areas.DauBepPage.Controllers
                 ModelState.AddModelError("", "Không tồn tại sản phẩm có mã vừa nhập.");
                 return View(product);
             }
+        }
+        [HttpGet]
+        public ActionResult DoanhThuDonHang()
+        {
+            var CookerSession = (CookerLoginSession)Session[Constant.COOKER_SESSION];
+            ViewBag.listOrder = new OrderDao().ListAllOrder1(CookerSession.VendorID);
+            ViewBag.gian_hang = new VendorDao().GetVendorById(CookerSession.VendorID);
+            ViewBag.tat_ca_gian_hang = new VendorDao().ListAllVendor();
+            ViewBag.tat_ca_san_pham = new ProductDao().ListAllProductByVendorId(CookerSession.VendorID);
+            ViewBag.tat_ca_user = new UserDao().ListAll();
+            return View();
+        }
+        [HttpPost]
+        public ActionResult DoanhThuDonHang(DateTime ngay1, DateTime ngay2)
+        {
+            if(ngay1 == null || ngay2 == null)
+            {
+                return View();
+            }
+            var CookerSession = (CookerLoginSession)Session[Constant.COOKER_SESSION];
+            ViewBag.listOrder = new OrderDao().ListAllOrder_TheoNgay(ngay1, ngay2, CookerSession.VendorID);
+            ViewBag.gian_hang = new VendorDao().GetVendorById(CookerSession.VendorID);
+            ViewBag.tat_ca_gian_hang = new VendorDao().ListAllVendor();
+            ViewBag.tat_ca_san_pham = new ProductDao().ListAllProductByVendorId(CookerSession.VendorID);
+            ViewBag.tat_ca_user = new UserDao().ListAll();
+            ViewBag.ngay1 = ngay1;
+            ViewBag.ngay2 = ngay2;
+            return View();
+        }
+        [HttpGet]
+        public ActionResult DoanhThuMonAn()
+        {
+            var CookerSession = (CookerLoginSession)Session[Constant.COOKER_SESSION];
+            ViewBag.listOrder = new OrderDao().ListAllOrder1(CookerSession.VendorID);
+            ViewBag.gian_hang = new VendorDao().GetVendorById(CookerSession.VendorID);
+            ViewBag.tat_ca_gian_hang = new VendorDao().ListAllVendor();
+            ViewBag.tat_ca_san_pham = new ProductDao().ListAllProductByVendorId(CookerSession.VendorID);
+            ViewBag.tat_ca_user = new UserDao().ListAll();
+            return View();
+        }
+        [HttpPost]
+        public ActionResult DoanhThuMonAn(DateTime ngay1, DateTime ngay2)
+        {
+            if (ngay1 == null || ngay2 == null)
+            {
+                return View();
+            }
+            var CookerSession = (CookerLoginSession)Session[Constant.COOKER_SESSION];
+            ViewBag.listOrder = new OrderDao().ListAllOrder_TheoNgay(ngay1, ngay2, CookerSession.VendorID);
+            ViewBag.gian_hang = new VendorDao().GetVendorById(CookerSession.VendorID);
+            ViewBag.tat_ca_gian_hang = new VendorDao().ListAllVendor();
+            ViewBag.tat_ca_san_pham = new ProductDao().ListAllProductByVendorId(CookerSession.VendorID);
+            ViewBag.tat_ca_user = new UserDao().ListAll();
+            ViewBag.ngay1 = ngay1;
+            ViewBag.ngay2 = ngay2;
+            return View();
+        }
+        public ActionResult Logout()
+        {
+            Session[Constant.COOKER_SESSION] = null;
+            return RedirectToAction("Login", "DauBepLogin");
         }
     }
 }

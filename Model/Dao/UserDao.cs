@@ -164,8 +164,20 @@ namespace Model.Dao
             {
                 return false;
             }
-
-            
+        }
+        public bool AdminLogin(string userName, string password)
+        {
+            var result = db.Manager.SingleOrDefault(x => x.UserName == userName && x.Password == password);
+            if (result == null)
+            {
+                return false;
+            }
+            else
+                return true;
+        }
+        public Manager GetAdminByUserName(string userName)
+        {
+            return db.Manager.SingleOrDefault(x => x.UserName == userName);
         }
     }
 }

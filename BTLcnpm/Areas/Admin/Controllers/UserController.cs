@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace BTLcnpm.Areas.Admin.Controllers
 {
-    public class UserController : Controller
+    public class UserController : BaseAdminController
     {
         // GET: Admin/User
         public ActionResult Index()

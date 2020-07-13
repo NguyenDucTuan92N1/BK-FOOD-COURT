@@ -7,19 +7,13 @@
     <script>
         $("#chinh_sua_san_pham").validate({
             rules: {
-                Name: "required",
-                Image: "required",
-                Price: "required",
+                ID: "required",
                 Quantity: "required",
-                DisplayOrder: "required",
             },
 
             messages: {
-                Name: "Làm ơn nhập tên.",
-                Image: "Làm ơn chọn hình ảnh.",
-                Price: "Làm ơn nhập giá.",
+                ID: "Làm ơn nhập ID.",
                 Quantity: "Làm ơn nhập số lượng.",
-                DisplayOrder: "Làm ơn thứ tự hiển thị.",
             },
 
             submitHandler: function (form) {
@@ -29,7 +23,7 @@
     </script>
 }
 <div class="card-header"><i class="fas fa-table mr-1"></i>Chỉnh sửa thông tin món ăn</div>
-<br />
+
 
 <div class="row">
     <div class="col-lg-12">

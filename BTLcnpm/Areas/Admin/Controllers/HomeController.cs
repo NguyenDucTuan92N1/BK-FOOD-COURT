@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model.Dao;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -6,7 +7,7 @@ using System.Web.Mvc;
 
 namespace BTLcnpm.Areas.Admin.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseAdminController
     {
         // GET: Admin/Home
         public ActionResult Index()
@@ -84,6 +85,59 @@ namespace BTLcnpm.Areas.Admin.Controllers
             {
                 return View();
             }
+        }
+        [HttpGet]
+        public ActionResult DoanhThuDonHang()
+        {
+            ViewBag.listOrder = new OrderDao().ListAllOrder2();
+            ViewBag.tat_ca_gian_hang = new VendorDao().ListAllVendor();
+            ViewBag.tat_ca_san_pham = new ProductDao().ListAllProduct();
+            ViewBag.tat_ca_user = new UserDao().ListAll();
+            return View();
+        }
+        [HttpPost]
+        public ActionResult DoanhThuDonHang(DateTime ngay1, DateTime ngay2)
+        {
+            if (ngay1 == null || ngay2 == null)
+            {
+                return View();
+            }
+            ViewBag.listOrder = new OrderDao().ListAllOrder_TheoNgay2(ngay1, ngay2);
+            ViewBag.tat_ca_gian_hang = new VendorDao().ListAllVendor();
+            ViewBag.tat_ca_san_pham = new ProductDao().ListAllProduct();
+            ViewBag.tat_ca_user = new UserDao().ListAll();
+            ViewBag.ngay1 = ngay1;
+            ViewBag.ngay2 = ngay2;
+            return View();
+        }
+        [HttpGet]
+        public ActionResult DoanhThuMonAn()
+        {
+            ViewBag.listOrder = new OrderDao().ListAllOrder2();
+            ViewBag.tat_ca_gian_hang = new VendorDao().ListAllVendor();
+            ViewBag.tat_ca_san_pham = new ProductDao().ListAllProduct();
+            ViewBag.tat_ca_user = new UserDao().ListAll();
+            return View();
+        }
+        [HttpPost]
+        public ActionResult DoanhThuMonAn(DateTime ngay1, DateTime ngay2)
+        {
+            if (ngay1 == null || ngay2 == null)
+            {
+                return View();
+            }
+            ViewBag.listOrder = new OrderDao().ListAllOrder_TheoNgay2(ngay1, ngay2);
+            ViewBag.tat_ca_gian_hang = new VendorDao().ListAllVendor();
+            ViewBag.tat_ca_san_pham = new ProductDao().ListAllProduct();
+            ViewBag.tat_ca_user = new UserDao().ListAll();
+            ViewBag.ngay1 = ngay1;
+            ViewBag.ngay2 = ngay2;
+            return View();
+        }
+        public ActionResult Logout()
+        {
+            Session[Common.CommonConstants.ADMIN_SESSION] = null;
+            return RedirectToAction("Login", "AdminLogin");
         }
     }
 }

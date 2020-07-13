@@ -218,9 +218,10 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdminLoginController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BaseAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\CookerController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
-    <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\Admin\Controllers\VendorController.cs" />
@@ -232,8 +233,10 @@
     <Compile Include="Areas\DauBepPage\Controllers\TrangDauBepController.cs" />
     <Compile Include="Areas\DauBepPage\Data\CookerLogin.cs" />
     <Compile Include="Areas\DauBepPage\DauBepPageAreaRegistration.cs" />
+    <Compile Include="Common\AdminLoginModel.cs" />
     <Compile Include="Common\CommonConstants.cs" />
     <Compile Include="Common\CustomMembershipProvider.cs" />
+    <Compile Include="Common\DateModel.cs" />
     <Compile Include="Common\Encryptor.cs" />
     <Compile Include="Common\SoTien.cs" />
     <Compile Include="Common\UserLogin.cs" />
@@ -314,6 +317,11 @@
     <Content Include="Areas\DauBepPage\Views\TrangDauBep\Index.cshtml" />
     <Content Include="Areas\DauBepPage\Views\TrangDauBep\ListFood.cshtml" />
     <Content Include="Areas\DauBepPage\Views\TrangDauBep\Edit.cshtml" />
+    <Content Include="Areas\DauBepPage\Views\TrangDauBep\DoanhThuDonHang.cshtml" />
+    <Content Include="Areas\DauBepPage\Views\TrangDauBep\DoanhThuMonAn.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminLogin\Login.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\DoanhThuDonHang.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\DoanhThuMonAn.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\User\Register.cshtml" />
     <Content Include="Views\Shared\Layout.cshtml" />
@@ -340,6 +348,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Views\BaseAdmin\" />
     <Folder Include="Areas\DauBepPage\Views\Base\" />
     <Folder Include="Views\Category\" />
   </ItemGroup>
