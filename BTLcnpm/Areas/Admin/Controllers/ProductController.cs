@@ -51,6 +51,8 @@ namespace BTLcnpm.Areas.Admin.Controllers
             catch (Exception ex)
             {
                 ModelState.AddModelError("", ex.Message);
+                var gian_hang = new VendorDao().GetVendorById(product.VendorID);
+                ViewBag.gian_hang = gian_hang;
                 var tat_ca_gian_hang = new VendorDao().ListAll();
                 ViewBag.danhSachGianHang = tat_ca_gian_hang;
                 return View(product);

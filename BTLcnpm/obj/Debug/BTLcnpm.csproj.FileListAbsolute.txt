@@ -165,3 +165,5 @@ C:\Users\ADMIN\source\repos\BTLcnpm\BTLcnpm\obj\Debug\BTLcnpm.dll
 C:\Users\ADMIN\source\repos\BTLcnpm\BTLcnpm\obj\Debug\BTLcnpm.pdb
 C:\Users\ADMIN\source\repos\BTLcnpm\BTLcnpm\bin\Bank.dll
 C:\Users\ADMIN\source\repos\BTLcnpm\BTLcnpm\bin\Bank.pdb
+C:\Users\ADMIN\source\repos\BTLcnpm\BTLcnpm\bin\CKFinder.dll
+C:\Users\ADMIN\source\repos\BTLcnpm\BTLcnpm\bin\CKFinder.pdb
