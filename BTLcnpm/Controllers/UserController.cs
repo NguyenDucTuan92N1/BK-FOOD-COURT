@@ -1,4 +1,4 @@
-﻿using BTLcnpm.Common;
+using BTLcnpm.Common;
 using BTLcnpm.Models;
 using Model.Dao;
 using Model.EF;
@@ -21,6 +21,7 @@ namespace BTLcnpm.Controllers
         [HttpGet]
         public ActionResult Register()
         {
+
             return View();
         }
         public ActionResult Index()
@@ -79,43 +80,46 @@ namespace BTLcnpm.Controllers
             }
             return View(model);
         }
-        //[HttpPost]
-        //public ActionResult Register(RegisterModel model)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var dao = new UserDao();
-        //        if (dao.CheckUserName(model.UserName))
-        //        {
-        //            ModelState.AddModelError("", "Tên đăng nhập đã tồn tại");
-        //        }
-        //        else if (dao.CheckEmail(model.Email))
-        //        {
-        //            ModelState.AddModelError("", "Email đã tồn tại");
-        //        }
-        //        else
-        //        {
-        //            var user = new User();
-        //            user.Name = model.Name;
-        //            user.Password = Encryptor.MD5Hash(model.Password);
-        //            user.Phone = model.Phone;
-        //            user.Email = model.Email;
-        //            user.Status = true;
-                    
-        //            var result = dao.Insert(user);
-        //            if (result > 0)
-        //            {
-        //                ViewBag.Success = "Đăng ký thành công";
-        //                model = new RegisterModel();
-        //            }
-        //            else
-        //            {
-        //                ModelState.AddModelError("", "Đăng ký không thành công.");
-        //            }
-        //        }
-        //    }
-        //    return View(model);
-        //}
+        [HttpPost]
+        public ActionResult Register(RegisterModel model)
+        {
+            if (ModelState.IsValid)
+            {
+               var dao = new UserDao();
+                if (dao.CheckUserName(model.UserName))
+                {
+                    if (dao.CheckEmail(model.Email))
+                    {
+                        ModelState.AddModelError("", "Email đã tồn tại");
+                    }
+                    else
+                    {
+                        var user = new User();
+                        user.Name = model.Name;
+                        user.Password = Encryptor.MD5Hash(model.Password);
+                        user.Phone = model.Phone;
+                        user.Email = model.Email;
+                        user.Status = true;
+
+                        var result = dao.Insert(user);
+                        if (result > 0)
+                        {
+                            ViewBag.Success = "Đăng ký thành công";
+                            model = new RegisterModel();
+                        }
+                        else
+                        {
+                            ModelState.AddModelError("", "Đăng ký không thành công.");
+                        }
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Tên đăng nhập đã tồn tại");
+                }
+            }
+            return View(model);
+        }
         public ActionResult Logout()
         {
             Session[CommonConstants.USER_SESSION] = null;
