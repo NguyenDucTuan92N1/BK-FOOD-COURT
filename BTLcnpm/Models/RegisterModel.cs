@@ -32,7 +32,7 @@ namespace BTLcnpm.Models
         [Required(ErrorMessage = "Yêu cầu nhập email")]
         [Display(Name = "Email")]
         public string Email { set; get; }
-
+        [Required(ErrorMessage = "Yêu cầu nhập sdt")]
         [Display(Name = "Điện thoại")]
         public string Phone { set; get; }
 

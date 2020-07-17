@@ -89,6 +89,8 @@
                                     <div class="col-md-10">
                                         @Html.EditorFor(model => model.Image, new { htmlAttributes = new { @class = "form-control", @id = "txtImage" }, @id = "txtImage" })
                                         <button class="btn btn-info" id="btnSelectImage" href="#">Chọn ảnh</button>
+                                        
+                                        
                                         @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
@@ -148,7 +150,7 @@
                             </div>
                         }
 
-                        
+
 
                         <!-- /.panel-body -->
                     </div>
