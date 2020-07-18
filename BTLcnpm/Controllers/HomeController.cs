@@ -12,7 +12,7 @@ namespace BTLcnpm.Controllers
 {
     public class HomeController : Controller
     {
-        // GET: Home
+        // Home
        
         public ActionResult Index()
         {
@@ -23,6 +23,7 @@ namespace BTLcnpm.Controllers
         }
 
         [ChildActionOnly]
+        // Menu
         public ActionResult Menu()
         {
             var listCategory = new VendorDao().ListAllVendor();
@@ -30,6 +31,7 @@ namespace BTLcnpm.Controllers
         }
         
        [ChildActionOnly]
+       //Gio hang
         public ActionResult DemGioHang()
         {
             var sessionCart = (List<CartItem>)Session[CommonConstants.CartSession];
@@ -38,7 +40,7 @@ namespace BTLcnpm.Controllers
                 int dem = 0;
                 foreach (var item in sessionCart)
                 {
-                    dem += item.Quantity;
+                    dem =dem+ item.Quantity;
                 }
                 ViewBag.dem_gio_hang = dem;
             }    
@@ -47,13 +49,13 @@ namespace BTLcnpm.Controllers
             return PartialView();
         }
         [ChildActionOnly]
+        //Ten
         public ActionResult HienThiTen()
         {
             var userSession = (UserLogin)Session[CommonConstants.USER_SESSION];
             if(userSession != null)
             {
                 var user = new UserDao().GetByUserName(userSession.UserName);
-                
                 ViewBag.ten_khach_hang = user.UserName;
                 ViewBag.so_du = user.Balance;
             }
