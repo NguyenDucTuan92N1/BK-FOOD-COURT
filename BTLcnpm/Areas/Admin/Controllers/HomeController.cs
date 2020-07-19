@@ -1,4 +1,5 @@
 ﻿using Model.Dao;
+using Model.EF;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -139,5 +140,12 @@ namespace BTLcnpm.Areas.Admin.Controllers
             Session[Common.CommonConstants.ADMIN_SESSION] = null;
             return RedirectToAction("Login", "AdminLogin");
         }
+       
+       // public ActionResult Getdata()
+      //  {
+       //     Product context = new Product();
+       //     var data=context.DisplayOrder.In
+        //    return View();
+        //}
     }
 }

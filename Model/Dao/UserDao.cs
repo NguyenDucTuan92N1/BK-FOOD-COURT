@@ -56,12 +56,13 @@ namespace Model.Dao
 
         public bool CheckUserName(string userName)
         {
-            throw new NotImplementedException();
+            return db.User.Count(x => x.UserName == userName) > 0;
+           
         }
 
         public bool CheckEmail(string email)
         {
-            throw new NotImplementedException();
+            return db.User.Count(x => x.Email == email) > 0;
         }
 
         //public int Login(string userName, string passWord, bool isAdmin = false)

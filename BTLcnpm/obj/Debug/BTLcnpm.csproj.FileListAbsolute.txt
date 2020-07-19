@@ -254,3 +254,11 @@ C:\Users\USER\Desktop\okok\ttcnpm\BTLcnpm\obj\Debug\BTLcnpm.csproj.CoreCompileIn
 C:\Users\USER\Desktop\okok\ttcnpm\BTLcnpm\obj\Debug\BTLcnpm.csproj.CopyComplete
 C:\Users\USER\Desktop\okok\ttcnpm\BTLcnpm\obj\Debug\BTLcnpm.dll
 C:\Users\USER\Desktop\okok\ttcnpm\BTLcnpm\obj\Debug\BTLcnpm.pdb
+C:\Users\USER\Desktop\okok\ttcnpm\BTLcnpm\bin\CaptchaMvc.dll
+C:\Users\USER\Desktop\okok\ttcnpm\BTLcnpm\bin\CaptchaMvc.pdb
+C:\Users\USER\Desktop\okok\ttcnpm\BTLcnpm\bin\CaptchaMvc.xml
+C:\Users\USER\Desktop\okok\ttcnpm\BTLcnpm\bin\BotDetect.dll
+C:\Users\USER\Desktop\okok\ttcnpm\BTLcnpm\bin\BotDetect.Web.UI.Mvc.dll
+C:\Users\USER\Desktop\okok\ttcnpm\BTLcnpm\bin\System.Data.SQLite.dll
+C:\Users\USER\Desktop\okok\ttcnpm\BTLcnpm\bin\System.Data.SQLite.xml
+C:\Users\USER\Desktop\okok\ttcnpm\BTLcnpm\bin\System.Data.SQLite.dll.config

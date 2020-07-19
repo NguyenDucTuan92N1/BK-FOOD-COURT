@@ -10,6 +10,8 @@ using System.Web.Mvc;
 using Bank;
 using System.Web.Security;
 using BTLcnpm.Common;
+using CaptchaMvc.HtmlHelpers;
+using BotDetect.Web.UI.Mvc;
 
 namespace BTLcnpm.Controllers
 {
@@ -81,24 +83,29 @@ namespace BTLcnpm.Controllers
             return View(model);
         }
         [HttpPost]
+        [CaptchaValidation("CaptchaCode", "registerCaptcha", "Mã xác nhận không đúng")]
+
         public ActionResult Register(RegisterModel model)
         {
             if (ModelState.IsValid)
             {
-               var dao = new UserDao();
-                if (dao.CheckUserName(model.UserName))
-                {
-                    if (dao.CheckEmail(model.Email))
+                var dao = new UserDao();
+                if (dao.CheckUserName(model.UserName)) ModelState.AddModelError("", "Tên đăng nhập đã tồn tại");
+                else if (dao.CheckEmail(model.Email))
                     {
                         ModelState.AddModelError("", "Email đã tồn tại");
+                        
                     }
-                    else
-                    {
+                else
+                {
                         var user = new User();
+                        user.UserName = model.UserName;
                         user.Name = model.Name;
                         user.Password = Encryptor.MD5Hash(model.Password);
                         user.Phone = model.Phone;
                         user.Email = model.Email;
+                        user.Balance = 0;
+                        
                         user.Status = true;
 
                         var result = dao.Insert(user);
@@ -111,15 +118,29 @@ namespace BTLcnpm.Controllers
                         {
                             ModelState.AddModelError("", "Đăng ký không thành công.");
                         }
-                    }
+                        
+                       
                 }
-                else
-                {
-                    ModelState.AddModelError("", "Tên đăng nhập đã tồn tại");
-                }
+                return View(model);
             }
             return View(model);
         }
+           // if (!ModelState.IsValid)
+           // {
+          //      return View("Index", model);
+          //  }
+         //   if (!this.IsCaptchaValid(""))
+         //   {
+//return View("Index", model);
+         //   }
+//else
+          //  {
+          //      ViewBag.RegisterModel = model;
+          //      return View(model);
+
+          //  }
+       //     return View(model);
+      //  }
         public ActionResult Logout()
         {
             Session[CommonConstants.USER_SESSION] = null;
@@ -187,5 +208,6 @@ namespace BTLcnpm.Controllers
             var tai_khoan = new BankDao().Update(userBank);
             return Redirect("/tai-khoan-ngan-hang");
         }
+       
     }
 }
