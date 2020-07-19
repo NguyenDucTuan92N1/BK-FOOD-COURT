@@ -19,7 +19,7 @@ namespace BTLcnpm.Controllers
     public class UserController : Controller
     {
        
-        // GET: User
+        // Nguoi dung
         [HttpGet]
         public ActionResult Register()
         {
@@ -82,6 +82,7 @@ namespace BTLcnpm.Controllers
             }
             return View(model);
         }
+        //Nhập mã xác nhận
         [HttpPost]
         [CaptchaValidation("CaptchaCode", "registerCaptcha", "Mã xác nhận không đúng")]
 
@@ -90,6 +91,7 @@ namespace BTLcnpm.Controllers
             if (ModelState.IsValid)
             {
                 var dao = new UserDao();
+                //Tạo tài khoản
                 if (dao.CheckUserName(model.UserName)) ModelState.AddModelError("", "Tên đăng nhập đã tồn tại");
                 else if (dao.CheckEmail(model.Email))
                     {
@@ -105,21 +107,18 @@ namespace BTLcnpm.Controllers
                         user.Phone = model.Phone;
                         user.Email = model.Email;
                         user.Balance = 0;
-                        
                         user.Status = true;
 
                         var result = dao.Insert(user);
                         if (result > 0)
                         {
-                            ViewBag.Success = "Đăng ký thành công";
+                            ViewBag.Success = "Đăng ký tài khoản thành công";
                             model = new RegisterModel();
                         }
                         else
                         {
-                            ModelState.AddModelError("", "Đăng ký không thành công.");
+                            ModelState.AddModelError("", "Đăng ký tài khoản không thành công.");
                         }
-                        
-                       
                 }
                 return View(model);
             }
@@ -151,6 +150,7 @@ namespace BTLcnpm.Controllers
             return View();
         }
         [HttpPost]
+        //Đăng nhập người dùng phần nạp tiền vào tài khản
         public ActionResult Recharge(SoTien so_tien)
         {
             string mesg;
@@ -164,7 +164,7 @@ namespace BTLcnpm.Controllers
             
             var user = new UserDao().GetByUserName(userSession.UserName);
             var res = new UserDao().recharge(user.ID, so_tien.money);
-            
+            //Nạp tiền
             if(res)
             {
                 mesg = "Nạp thành công";
@@ -197,6 +197,7 @@ namespace BTLcnpm.Controllers
 
             return View();
         }
+        //Chọn tài khoản ngân hàng
         [HttpPost]
         public ActionResult AddUserBank(UserBank userBank)
         {
