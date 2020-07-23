@@ -11,5 +11,7 @@ namespace BTLcnpm.Common
     {
         public DateTime ngay1 { set; get; }
         public DateTime ngay2 { set; get; }
+        public DateTime ngay3 { set; get; }
+        public DateTime ngay4 { set; get; }
     }
 }
