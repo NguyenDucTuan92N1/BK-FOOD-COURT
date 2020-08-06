@@ -18,6 +18,10 @@ namespace Model.Dao
         {
             return db.Vendor.OrderBy(x => x.VendorID).ToList();
         }
+        public List<Vendor> Menu()
+        {
+            return db.Vendor.OrderBy(x => x.VendorID).Where(x => x.Status == true).OrderBy(x => x.DisplayOrder).ToList();
+        }
         public Vendor ViewDetail(long vendorID)
         {
             var vendor = db.Vendor.SingleOrDefault(x => x.VendorID == vendorID);

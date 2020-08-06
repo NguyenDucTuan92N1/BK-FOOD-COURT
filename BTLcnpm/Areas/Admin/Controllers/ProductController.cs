@@ -42,6 +42,7 @@ namespace BTLcnpm.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Create(Product product)
         {
+            product.CreatedDate = DateTime.Today;
             try
             {
                 var result = new ProductDao().Insert(product);
@@ -108,14 +109,14 @@ namespace BTLcnpm.Areas.Admin.Controllers
             {
                 new ProductDao().UpdateStatus(productId);
                 var VendorId = new ProductDao().GetProductById(productId).VendorID;
-                return RedirectToAction("Index", "Product", new { vendorId = VendorId });
+                return RedirectToAction("Index", "Product");
 
             }
             catch (Exception ex)
             {
                 ModelState.AddModelError("", ex.Message);
                 var VendorId = new ProductDao().GetProductById(productId).VendorID;
-                return RedirectToAction("Index", "Product", new { vendorId = VendorId });
+                return RedirectToAction("Index", "Product");
 
             }
         }

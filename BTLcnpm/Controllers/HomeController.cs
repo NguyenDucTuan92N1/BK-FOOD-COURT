@@ -17,7 +17,7 @@ namespace BTLcnpm.Controllers
         public ActionResult Index()
         {
             var productDao = new ProductDao();
-            var model = productDao.ListAllProduct();
+            var model = productDao.ListAllProduct1();
            
             return View(model);
         }
@@ -25,7 +25,7 @@ namespace BTLcnpm.Controllers
         [ChildActionOnly]
         public ActionResult Menu()
         {
-            var listCategory = new VendorDao().ListAllVendor();
+            var listCategory = new VendorDao().Menu();
             return PartialView(listCategory);
         }
         

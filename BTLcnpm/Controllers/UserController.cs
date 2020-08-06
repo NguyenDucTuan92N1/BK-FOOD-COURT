@@ -10,8 +10,6 @@ using System.Web.Mvc;
 using Bank;
 using System.Web.Security;
 using BTLcnpm.Common;
-using CaptchaMvc.HtmlHelpers;
-using BotDetect.Web.UI.Mvc;
 
 namespace BTLcnpm.Controllers
 {
@@ -19,11 +17,10 @@ namespace BTLcnpm.Controllers
     public class UserController : Controller
     {
        
-        // Nguoi dung
+        // GET: User
         [HttpGet]
         public ActionResult Register()
         {
-
             return View();
         }
         public ActionResult Index()
@@ -82,64 +79,43 @@ namespace BTLcnpm.Controllers
             }
             return View(model);
         }
-        //Nhập mã xác nhận
-        [HttpPost]
-        [CaptchaValidation("CaptchaCode", "registerCaptcha", "Mã xác nhận không đúng")]
-
-        public ActionResult Register(RegisterModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                var dao = new UserDao();
-                //Tạo tài khoản
-                if (dao.CheckUserName(model.UserName)) ModelState.AddModelError("", "Tên đăng nhập đã tồn tại");
-                else if (dao.CheckEmail(model.Email))
-                    {
-                        ModelState.AddModelError("", "Email đã tồn tại");
-                        
-                    }
-                else
-                {
-                        var user = new User();
-                        user.UserName = model.UserName;
-                        user.Name = model.Name;
-                        user.Password = Encryptor.MD5Hash(model.Password);
-                        user.Phone = model.Phone;
-                        user.Email = model.Email;
-                        user.Balance = 0;
-                        user.Status = true;
-
-                        var result = dao.Insert(user);
-                        if (result > 0)
-                        {
-                            ViewBag.Success = "Đăng ký tài khoản thành công";
-                            model = new RegisterModel();
-                        }
-                        else
-                        {
-                            ModelState.AddModelError("", "Đăng ký tài khoản không thành công.");
-                        }
-                }
-                return View(model);
-            }
-            return View(model);
-        }
-           // if (!ModelState.IsValid)
-           // {
-          //      return View("Index", model);
-          //  }
-         //   if (!this.IsCaptchaValid(""))
-         //   {
-//return View("Index", model);
-         //   }
-//else
-          //  {
-          //      ViewBag.RegisterModel = model;
-          //      return View(model);
-
-          //  }
-       //     return View(model);
-      //  }
+        //[HttpPost]
+        //public ActionResult Register(RegisterModel model)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        var dao = new UserDao();
+        //        if (dao.CheckUserName(model.UserName))
+        //        {
+        //            ModelState.AddModelError("", "Tên đăng nhập đã tồn tại");
+        //        }
+        //        else if (dao.CheckEmail(model.Email))
+        //        {
+        //            ModelState.AddModelError("", "Email đã tồn tại");
+        //        }
+        //        else
+        //        {
+        //            var user = new User();
+        //            user.Name = model.Name;
+        //            user.Password = Encryptor.MD5Hash(model.Password);
+        //            user.Phone = model.Phone;
+        //            user.Email = model.Email;
+        //            user.Status = true;
+                    
+        //            var result = dao.Insert(user);
+        //            if (result > 0)
+        //            {
+        //                ViewBag.Success = "Đăng ký thành công";
+        //                model = new RegisterModel();
+        //            }
+        //            else
+        //            {
+        //                ModelState.AddModelError("", "Đăng ký không thành công.");
+        //            }
+        //        }
+        //    }
+        //    return View(model);
+        //}
         public ActionResult Logout()
         {
             Session[CommonConstants.USER_SESSION] = null;
@@ -150,7 +126,6 @@ namespace BTLcnpm.Controllers
             return View();
         }
         [HttpPost]
-        //Đăng nhập người dùng phần nạp tiền vào tài khản
         public ActionResult Recharge(SoTien so_tien)
         {
             string mesg;
@@ -164,7 +139,7 @@ namespace BTLcnpm.Controllers
             
             var user = new UserDao().GetByUserName(userSession.UserName);
             var res = new UserDao().recharge(user.ID, so_tien.money);
-            //Nạp tiền
+            
             if(res)
             {
                 mesg = "Nạp thành công";
@@ -197,7 +172,6 @@ namespace BTLcnpm.Controllers
 
             return View();
         }
-        //Chọn tài khoản ngân hàng
         [HttpPost]
         public ActionResult AddUserBank(UserBank userBank)
         {
@@ -209,6 +183,5 @@ namespace BTLcnpm.Controllers
             var tai_khoan = new BankDao().Update(userBank);
             return Redirect("/tai-khoan-ngan-hang");
         }
-       
     }
 }

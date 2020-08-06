@@ -19,18 +19,22 @@ namespace Model.Dao
         {
             return db.Product.OrderBy(x => x.ID).ToList();
         }
-        
+
+        public List<Product> ListAllProduct1()
+        {
+            return db.Product.Where(x => x.Quantity > 0 && x.Status == true).OrderBy(x => x.ID).ToList();
+        }
         public List<Product> ListAllProductByVendorId(long vendorId)
         {
-            return db.Product.Where(x=>x.VendorID == vendorId).OrderBy(x => x.ID).ToList();
+            return db.Product.Where(x=>x.VendorID == vendorId ).OrderBy(x => x.ID).ToList();
         }
         public List<Product> ListByVendorId(long VendorID)
         {
-            return db.Product.Where(x => x.Status == true && x.VendorID == VendorID).OrderBy(x => x.DisplayOrder).ToList();
+            return db.Product.Where(x => x.Status == true && x.VendorID == VendorID && x.Quantity > 0).OrderBy(x => x.DisplayOrder).ToList();
         }      
         public List<Product> Search(string keyword)
         {
-            var list = db.Product.Where(x => x.Name.Contains(keyword)).OrderBy(x => x.CreatedDate).ToList();
+            var list = db.Product.Where(x => x.Name.Contains(keyword) && x.Quantity > 0 && x.Status == true).OrderBy(x => x.CreatedDate).ToList();
             return list;
         }
         public Product ProductDetail(long id)

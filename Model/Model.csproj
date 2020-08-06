@@ -58,6 +58,7 @@
     <Compile Include="Dao\UserDao.cs" />
     <Compile Include="EF\Bank.cs" />
     <Compile Include="EF\Cooker.cs" />
+    <Compile Include="EF\DoanhThuMonAnModel.cs" />
     <Compile Include="EF\Manager.cs" />
     <Compile Include="EF\Order.cs" />
     <Compile Include="EF\Product.cs" />

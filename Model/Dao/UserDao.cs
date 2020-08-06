@@ -53,18 +53,7 @@ namespace Model.Dao
         {
             return db.User.Find(id);
         }
-
-        public bool CheckUserName(string userName)
-        {
-            return db.User.Count(x => x.UserName == userName) > 0;
-           
-        }
-
-        public bool CheckEmail(string email)
-        {
-            return db.User.Count(x => x.Email == email) > 0;
-        }
-
+        
         //public int Login(string userName, string passWord, bool isAdmin = false)
         //{
         //    var result = db.User.SingleOrDefault(x => x.UserName == userName);

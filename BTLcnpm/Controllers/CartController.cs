@@ -47,7 +47,7 @@ namespace BTLcnpm.Controllers
             {
                 mesg = "Bạn cần đăng nhập.";
                 ViewBag.mes = mesg;
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Login", "User");
             }
             var product = new ProductDao().ProductDetail(productID);
             var cart = Session[CommonConstants.CartSession];
